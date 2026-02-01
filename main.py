@@ -9,8 +9,8 @@ import re
 from telethon import TelegramClient
 from telethon import events
 
-bot = telebot.TeleBot(config.BOT_TOKEN)
-client = TelegramClient('shop_session', config.API_ID, config.API_HASH)
+bot = telebot.TeleBot(BOT_TOKEN)
+client = TelegramClient('shop_session', API_ID, API_HASH)
 
 conn = sqlite3.connect('shop.db', check_same_thread=False)
 cursor = conn.cursor()
@@ -75,7 +75,7 @@ conn.commit()
 
 def create_invoice(amount, currency='USDT'):
     url = 'https://pay.crypt.bot/api/createInvoice'
-    headers = {'Crypto-Pay-API-Token': config.CRYPTO_BOT_TOKEN}
+    headers = {'Crypto-Pay-API-Token': CRYPTO_BOT_TOKEN}
     data = {
         'amount': str(amount),
         'asset': currency,
@@ -90,7 +90,7 @@ def create_invoice(amount, currency='USDT'):
 
 def check_invoice(invoice_id):
     url = f'https://pay.crypt.bot/api/getInvoices?invoice_ids={invoice_id}'
-    headers = {'Crypto-Pay-API-Token': config.CRYPTO_BOT_TOKEN}
+    headers = {'Crypto-Pay-API-Token': CRYPTO_BOT_TOKEN}
     
     try:
         response = requests.get(url, headers=headers, timeout=10)
@@ -431,7 +431,7 @@ def monitor_payment(invoice_id, user_id, product_id):
 
 @bot.message_handler(commands=['admin'])
 def admin_panel(message):
-    if message.from_user.id != config.ADMIN_ID:
+    if message.from_user.id !=ADMIN_ID:
         return
     
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -450,7 +450,7 @@ def add_product_step1(message):
     bot.register_next_step_handler(msg, add_product_step2)
 
 def add_product_step2(message):
-    if message.from_user.id != config.ADMIN_ID:
+    if message.from_user.id != ADMIN_ID:
         return
     
     try:
@@ -472,7 +472,7 @@ def add_product_step2(message):
 
 @bot.message_handler(func=lambda message: message.text == '📝 Добавить аккаунт')
 def add_account_step1(message):
-    if message.from_user.id != config.ADMIN_ID:
+    if message.from_user.id != ADMIN_ID:
         return
     
     cursor.execute('SELECT id, name FROM products')
@@ -487,7 +487,7 @@ def add_account_step1(message):
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith('addacc_'))
 def add_account_step2(call):
-    if call.from_user.id != config.ADMIN_ID:
+    if call.from_user.id !=ADMIN_ID:
         return
     
     product_id = int(call.data.replace('addacc_', ''))
@@ -496,7 +496,7 @@ def add_account_step2(call):
     bot.register_next_step_handler(msg, add_account_step3, product_id)
 
 def add_account_step3(message, product_id):
-    if message.from_user.id != config.ADMIN_ID:
+    if message.from_user.id !=ADMIN_ID:
         return
     
     try:
