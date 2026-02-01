@@ -6,7 +6,6 @@ import time
 import requests
 import asyncio
 import re
-import config
 from telethon import TelegramClient
 from telethon import events
 
