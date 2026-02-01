@@ -9,7 +9,7 @@ import re
 from telethon import TelegramClient
 from telethon import events
 
-bot = telebot.TeleBot(BOT_TOKEN)
+bot = telebot.TeleBot(API_TOKEN)
 client = TelegramClient('shop_session', API_ID, API_HASH)
 
 conn = sqlite3.connect('shop.db', check_same_thread=False)
