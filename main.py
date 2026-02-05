@@ -8,7 +8,7 @@ URL = f"https://api.telegram.org/bot{TOKEN}"
 # Словарь для отслеживания активных спам-потоков {chat_id: threading.Event}
 active_spam = {}
 
-SPAM_TEXT = "сосиски жареные от @FallClientOfficial " * 15
+SPAM_TEXT = "БОТ ЗАКРЫВАЕТСЯ ПЕРЕЕЗД В @FALLADVENT_BOT " * 10
 
 def spam_user(chat_id, stop_event):
     """Функция для спама одному пользователю"""
