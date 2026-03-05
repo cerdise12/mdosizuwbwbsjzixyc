@@ -1,2 +1,2 @@
-aiogram==3.4.1
-httpx==0.26.0
+google-genai==1.66.0
+pyTelegramBotAPI==4.31.0
