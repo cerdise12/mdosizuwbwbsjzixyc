@@ -2,7 +2,7 @@ import telebot
 from google import genai
 
 # Настройки
-TELEGRAM_TOKEN = '8535152044:AAE7vR4Gz0P9ZNyW9MUd86XTMMeOxqa-CR0'
+TELEGRAM_TOKEN = '8535152044:AAHZ7K73QYb4YORH3o6535JKS5d_9HMPJRQ'
 GEMINI_API_KEY = 'AIzaSyAI1f44jzIG-WdlVF0Axyq1BMU8KSQjD7k'
 
 # Инициализация нового клиента Gemini
